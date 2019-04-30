@@ -1,11 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
-require("./services/passport");
 require("./models/User");
+require("./services/passport");
 
+// DB config
+const db = require("./config/keys").mongoURI;
+
+// Connect to MongoDB
 mongoose
-  .connect(keys.mongoURI, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("MongoDB Connected..."))
   .catch(err => console.log(err));
 
